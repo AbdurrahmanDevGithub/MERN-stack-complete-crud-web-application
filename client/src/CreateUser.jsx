@@ -14,7 +14,11 @@ const CreateUser = () => {
 
   const Submit=(e)=>{
     e.preventDefault();
-    axios.post('http://127.0.0.1:3001/createUser',{name,email,age})
+    axios.post('http://127.0.0.1:3001/createUser',{
+      name:name,
+      email:email,
+      age:age
+    })
     .then(result=>{
       console.log(result)
       navigate('/')
@@ -23,7 +27,7 @@ const CreateUser = () => {
   }
 
   useEffect(()=>{
-    axios.get('http://127.0.0.1:3001/getUser')
+    axios.get('http://127.0.0.1:3001/showUser')
     .then(response=>{
       setUser(response.data)
     })

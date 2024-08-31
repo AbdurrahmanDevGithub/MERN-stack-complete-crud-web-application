@@ -26,10 +26,11 @@ app.get("/showUser", async (req, res) => {
   }
 });
 
-app.post("/deleteUser", async (req, res) => {
+app.post("/deleteUser/:id", async (req, res) => {
   try {
     const name = req.body.name;
-    const deleteData = await UserModel.findOneAndDelete(name);
+    const id=req.params.id;
+    const deleteData = await UserModel.findOneAndDelete({_id:id});
     res.send(deleteData);
   } catch (err) {
     console.log(err);

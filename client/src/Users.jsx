@@ -16,12 +16,12 @@ const Users = () => {
       });
   }, []);
   
-  const deleteData=(name)=>{
-    axios.post('http://127.0.0.1:3001/deleteUser',{
+  const deleteData=(id)=>{
+    axios.post('http://127.0.0.1:3001/deleteUser/'+id,{
       name:name
     })
-    .then(
-      setUser(user.filter(u=> u.name!==name)),
+    .then(response=>
+      setUser(user.filter(u=> u._id!==id)),
       navigate('/')
     )
   }
@@ -49,7 +49,7 @@ const Users = () => {
                   <td>{user.age}</td>
                   <td>
                     <Link to={`/update/${user._id}`}><button className='btn btn-success'>Edit</button></Link> 
-                    <button onClick={()=>deleteData(user.name)} className='btn btn-danger'>Delete</button> 
+                    <button onClick={()=>deleteData(user._id)} className='btn btn-danger'>Delete</button> 
                   </td>
                 </tr>
               )
